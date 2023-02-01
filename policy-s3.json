@@ -1,0 +1,15 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::all-images-transparancy",
+                "arn:aws:s3:::all-images-transparancy/*"
+            ]
+        }
+    ]
+}
