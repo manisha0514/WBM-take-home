@@ -7,7 +7,7 @@ Detecting faces from the images with group of people
  3. Face Images - output path for saving the headshots of the detected faces 
  
  Output:
- Total 5 faces found in file istockphoto-1344872631-170667a.jpg
+  Total 5 faces found in file istockphoto-1344872631-170667a.jpg
  
 ### Run Command
 #### python Face_detection.py
@@ -18,9 +18,9 @@ Detecting faces from the images with group of people
 3. sample policy.json file for s3 bucket permissions
 
 Output:
-Total Images 6
-Non transparent Images  4
-Total transparent Images 2
+ Total Images 6
+ Non transparent Images  4
+ Total transparent Images 2
 
 ### Run Command
 #### python check_transparency.py AKIAIOSFODNN7EXAMPLE wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY src-bucket-name dest-bucket-name
