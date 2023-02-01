@@ -74,6 +74,8 @@ def main(args):
 
             if len(list(source_bucket.objects.all())) > 0:
                 # List all files from source bucket and iterate to check for transparent pixels
+                files_copied = 0
+                files_not_copied = 0
                 for source_bucket_object in source_bucket.objects.all():
                     print(source_bucket_object.key)
                     # Get image from bucket and read using PIL
@@ -98,6 +100,7 @@ def main(args):
                                     CopySource=copy_source
                                 )
                                 print(source_bucket_object.key + 'Image is copied to ' + target_bucket.name)
+                                files_copied +=1
                             except Exception as e:
                                 logging.error("Issue in moving file to another bucket "+str(e))
 
@@ -106,6 +109,7 @@ def main(args):
                             try:
                                 with open("transparent_image_log.txt", "a") as f:
                                     f.write(source_bucket_object.key + '\n')
+                                    files_not_copied +=1
                             except Exception as e:
                                 logging.error("Error while writing into transparent log File")
                     else:
@@ -113,9 +117,11 @@ def main(args):
             else:
                 logging.warning("No Images in the s3 Bucket")
 
-        except botocore.exceptions.ClientError:
-            logging.warning(" wrong aws access credentials provided")
+        except Exception as e:
+            logging.warning(" wrong aws access credentials provided"+str(e))
 
-
+    print("Total Images", len(list(source_bucket.objects.all())) )
+    print("Non transparent Images ", files_copied)
+    print("Total transparent Images", files_not_copied)
 if __name__ == "__main__":
     main(sys.argv)
